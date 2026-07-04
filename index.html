@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Mokena: Paris of the Midwest</title>
+    <meta
+      name="description"
+      content="A mobile-first pitch for the September 2026 Mokena birthday weekend: nature, local food, bonfires, Chicago friends, and Dirt Oval 66."
+    >
+    <meta property="og:title" content="Mokena: Paris of the Midwest">
+    <meta property="og:description" content="RSVP for the slow hometown birthday weekend anchored by Dirt Oval 66.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/mokena-hero.png">
+    <meta name="theme-color" content="#ad3f2f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One+SC&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/mokena-hero.png" as="image">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <header class="site-header">
+        <a class="brand" href="#overview" aria-label="Mokena tour home">
+          Mokena
+          <span>Dominic's Hometown Tour</span>
+        </a>
+        <div class="status-pill" id="statusPill">RSVP soon</div>
+      </header>
+
+      <main class="poster-card" id="dayCard" aria-live="polite"></main>
+
+      <nav class="bottom-nav" aria-label="Day navigation">
+        <div class="nav-shell">
+          <button class="nav-button" id="prevDay" type="button" aria-label="Previous day">‹</button>
+          <div class="nav-label">
+            <strong id="navTitle">Mokena</strong>
+            <span id="navSub">Day 1 of 7</span>
+          </div>
+          <button class="nav-button" id="nextDay" type="button" aria-label="Next day">›</button>
+        </div>
+      </nav>
+    </div>
+
+    <template id="sectionTemplate">
+      <section class="info-section is-open">
+        <button class="section-toggle" type="button" aria-expanded="true">
+          <span class="section-heading"></span>
+          <span class="section-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div class="section-body"></div>
+      </section>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
