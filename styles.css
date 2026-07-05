@@ -64,7 +64,7 @@ a {
   width: min(100%, 540px);
   min-height: 100dvh;
   margin: 0 auto;
-  padding: env(safe-area-inset-top) 0 calc(24px + env(safe-area-inset-bottom));
+  padding: env(safe-area-inset-top) 0 calc(104px + env(safe-area-inset-bottom));
 }
 
 .site-header {
@@ -140,6 +140,11 @@ a {
   inset: 0;
   object-fit: cover;
   filter: saturate(0.92) contrast(0.95) sepia(0.14);
+}
+
+.poster-hero img.hero-image--watertower {
+  object-position: center center;
+  transform: scale(1.16);
 }
 
 .poster-hero::before {
@@ -843,7 +848,6 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
   padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
   background: linear-gradient(180deg, rgba(238, 225, 200, 0), rgba(238, 225, 200, 0.94) 35%, var(--paper));
 }
