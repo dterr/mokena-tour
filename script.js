@@ -85,27 +85,8 @@ const rsvps = [
 
 const trip = [
   {
-    date: "2026-09-22",
-    title: "SF Sendoff",
-    subtitle: "Chance, packing, chaos",
-    place: "San Francisco",
-    vibe: "pregame the hometown launch",
-    pitch: "The night before the Midwest reset: Chance the Rapper, late packing, and the last bit of SF chaos before everything slows down.",
-    alert: null,
-    bring: ["Concert fit", "Chargers", "Travel docs", "Pack tonight"],
-    plan: [
-      ["Night", "Chance the Rapper in San Francisco."],
-      ["Late", "Pack for work calls, dirt track, hot tub, and slow backyard mornings."],
-      ["Reminder", "Start the trip slightly chaotic, then land into calm."],
-    ],
-    notes: [
-      ["Mood", "High energy sendoff before the Mokena stretch."],
-      ["Tomorrow", "SFO to Chicago, then straight into Portillo's and garage beers."],
-    ],
-  },
-  {
     date: "2026-09-23",
-    title: "Welcome to Mokena",
+    title: "Settling In",
     subtitle: "Portillo's, garage beers, home base",
     place: "SFO → Chicago → Mokena",
     vibe: "touch down in the Paris of the Midwest",
@@ -176,9 +157,10 @@ const trip = [
   },
   {
     date: "2026-09-26",
-    title: "Derby Birthday",
+    title: "Derby Day",
     subtitle: "12-person RSVP anchor",
     place: "Dirt Oval 66, Joliet",
+    image:"assets/beer.JPG",
     vibe: "full Americana birthday night",
     pitch: "The anchor event. I am booking this as a birthday thing and need 12 people, so RSVP matters.",
     alert: "RSVP soon: this is the event that needs a clean headcount and ticket coordination.",
@@ -218,29 +200,9 @@ const trip = [
       ["Pace", "This should feel unhurried and local."],
     ],
   },
-  {
-    date: "2026-09-28",
-    title: "Soft Goodbye",
-    subtitle: "breakfast cleanup, flexible flights",
-    place: "Mokena → SF",
-    vibe: "leave Sunday or Monday",
-    pitch: "Monday is the default flight home, but Sunday departures work too. Airport rides can be coordinated.",
-    alert: "Flights out do not matter too much; Sunday or Monday can both work.",
-    bring: ["Packed bag", "Leftovers", "Chargers", "Airport timing"],
-    plan: [
-      ["Morning", "Breakfast cleanup."],
-      ["Default", "United 2437 back to SF."],
-      ["Flexible", "Sunday departures are fine too."],
-      ["Airport", "My mom can help drive people to and from the airport."],
-    ],
-    notes: [
-      ["Goal", "Make leaving easy, not stressful."],
-      ["Wrap", "Full camera roll, low battery, successful hometown pitch."],
-    ],
-  },
 ];
 
-const pageCount = trip.length + 1;
+const pageCount = trip.length + 2;
 let current = getInitialIndex();
 
 function formatDate(iso) {
@@ -272,11 +234,15 @@ function addSection(title, bodyBuilder, open = true) {
 function render(index) {
   current = Math.max(0, Math.min(pageCount - 1, index));
   if (current === 0) {
+    renderLocals();
+    return;
+  }
+  if (current === 1) {
     renderOverview();
     return;
   }
 
-  const dayIndex = current - 1;
+  const dayIndex = current - 2;
   const day = trip[dayIndex];
   dayCard.classList.remove("is-in");
   dayCard.innerHTML = "";
@@ -284,7 +250,7 @@ function render(index) {
   const hero = document.createElement("div");
   hero.className = "poster-hero";
   hero.innerHTML = `
-    <img class="${day.imageClass || ""}" src="${day.image || "assets/mokena-hero.png"}" alt="">
+    <img class="${day.imageClass || ""}" src="${day.image || "assets/barns.JPG"}" alt="">
     <div class="poster-title">
       <h1>${day.title}</h1>
       <p class="poster-p1">${day.vibe}</p>
@@ -487,30 +453,28 @@ function renderOverview() {
   );
 
   dayCard.append(hero, content);
-  if (current === 0) {
-    hero.insertAdjacentHTML("beforeend", `
-      <button class="music-button" type="button" aria-expanded="false" aria-label="Play overview soundtrack">♪</button>
-      <div class="music-popover" aria-label="Overview soundtrack">
-        <iframe
-          title="${overviewSoundtrack.title}"
-          src="https://www.youtube.com/embed/${overviewSoundtrack.videoId}?playsinline=1&rel=0"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <p>Tap play for the soundtrack.</p>
-      </div>
-    `);
-    const musicButton = hero.querySelector(".music-button");
-    const musicPopover = hero.querySelector(".music-popover");
-    musicButton.addEventListener("click", () => {
-      const isOpen = musicPopover.classList.toggle("is-open");
-      musicButton.setAttribute("aria-expanded", String(isOpen));
-      if (isOpen) {
-        const iframe = musicPopover.querySelector("iframe");
-        iframe.src = `https://www.youtube.com/embed/${overviewSoundtrack.videoId}?autoplay=1&playsinline=1&rel=0`;
-      }
-    });
-  }
+  hero.insertAdjacentHTML("beforeend", `
+    <button class="music-button" type="button" aria-expanded="false" aria-label="Play overview soundtrack">♪</button>
+    <div class="music-popover" aria-label="Overview soundtrack">
+      <iframe
+        title="${overviewSoundtrack.title}"
+        src="https://www.youtube.com/embed/${overviewSoundtrack.videoId}?playsinline=1&rel=0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <p>Tap play for the soundtrack.</p>
+    </div>
+  `);
+  const musicButton = hero.querySelector(".music-button");
+  const musicPopover = hero.querySelector(".music-popover");
+  musicButton.addEventListener("click", () => {
+    const isOpen = musicPopover.classList.toggle("is-open");
+    musicButton.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      const iframe = musicPopover.querySelector("iframe");
+      iframe.src = `https://www.youtube.com/embed/${overviewSoundtrack.videoId}?autoplay=1&playsinline=1&rel=0`;
+    }
+  });
   dayCard.querySelectorAll(".overview-link-summary").forEach((button) => {
     button.addEventListener("click", () => {
       const card = button.closest(".overview-link-card");
@@ -520,12 +484,87 @@ function renderOverview() {
   });
   requestAnimationFrame(() => dayCard.classList.add("is-in"));
 
-  prevDay.disabled = true;
+  prevDay.disabled = false;
   nextDay.disabled = false;
   navTitle.textContent = "Overview";
   navSub.textContent = `Start · ${trip.length} days`;
   statusPill.textContent = "Start here";
   history.replaceState(null, "", "#overview");
+}
+
+function renderLocals() {
+  dayCard.classList.remove("is-in");
+  dayCard.innerHTML = "";
+
+  const hero = document.createElement("div");
+  hero.className = "poster-hero poster-hero--locals";
+  hero.innerHTML = `
+    <img src="assets/friends.png" alt="">
+    <div class="poster-title">
+      <h1>Meet My Friends!</h1>
+      <p class="poster-p1">Friday + Saturday in Mokena</p>
+      <p class="poster-p2">We're playing the hits locally</p>
+    </div>
+    <div class="place-sign">Local invite</div>
+  `;
+
+  const content = document.createElement("div");
+  content.className = "poster-content";
+  content.append(
+    addSection("The ask", (body) => {
+      body.innerHTML = `
+        <div class="pitch-box">
+          I have friends coming into town and you should definitely come down to Mokena.
+          Friday night is bars, backyard, hot tub, and bonfire energy. Saturday is the
+          Team Demolition Derby at Dirt Oval 66.
+        </div>
+      `;
+    })
+  );
+  content.append(
+    addSection("Plan", (body) => {
+      body.innerHTML = `
+        <div class="timeline">
+          <div class="step">
+            <strong>Thursday</strong>
+            <p>Some of us are going to Two Door Cinema Club at The Salt Shed earlier in the week.</p>
+          </div>
+          <div class="step">
+            <strong>Friday night</strong>
+            <p>Mokena bars, probably Gracie's / Old Plank Trail Tavern, then bonfire and hot tub.</p>
+          </div>
+          <div class="step">
+            <strong>Saturday</strong>
+            <p>Dirt Oval 66 for the Team Demolition Derby. This is the big local spectacle.</p>
+          </div>
+        </div>
+      `;
+    })
+  );
+  content.append(
+    addSection("Vibe", (body) => {
+      body.innerHTML = `
+        <div class="tag-list">
+          <span>Mokena bars</span>
+          <span>Old friends</span>
+          <span>New friends</span>
+          <span>Demolition derby</span>
+          <span>Bonfire</span>
+          <span>Hot tub</span>
+        </div>
+      `;
+    })
+  );
+
+  dayCard.append(hero, content);
+  requestAnimationFrame(() => dayCard.classList.add("is-in"));
+
+  prevDay.disabled = true;
+  nextDay.disabled = false;
+  navTitle.textContent = "Local Invite";
+  navSub.textContent = "Next · full overview";
+  statusPill.textContent = "Come through";
+  history.replaceState(null, "", "#locals");
 }
 
 function renderGuestList() {
@@ -558,12 +597,15 @@ function restoreNoteFields() {
 }
 
 function getInitialIndex() {
-  if (location.hash === "#overview" || location.hash === "") {
+  if (location.hash === "#locals" || location.hash === "") {
     return 0;
+  }
+  if (location.hash === "#overview") {
+    return 1;
   }
   const match = location.hash.match(/day-(\d+)/);
   if (match) {
-    return Math.max(1, Math.min(pageCount - 1, Number(match[1])));
+    return Math.max(2, Math.min(pageCount - 1, Number(match[1]) + 1));
   }
   return 0;
 }
