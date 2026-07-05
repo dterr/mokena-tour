@@ -64,7 +64,7 @@ a {
   width: min(100%, 540px);
   min-height: 100dvh;
   margin: 0 auto;
-  padding: env(safe-area-inset-top) 0 calc(104px + env(safe-area-inset-bottom));
+  padding: env(safe-area-inset-top) 0 calc(24px + env(safe-area-inset-bottom));
 }
 
 .site-header {
@@ -429,7 +429,7 @@ a {
 .alert-box,
 .note-card,
 .ticket-card,
-.rsvp-card {
+.guest-list {
   border: 2px solid var(--ink);
   border-radius: 5px;
   box-shadow: 3px 3px 0 var(--ink);
@@ -523,15 +523,13 @@ a {
 }
 
 .note-grid,
-.ticket-grid,
-.rsvp-grid {
+.ticket-grid {
   display: grid;
   gap: 10px;
 }
 
 .note-card,
-.ticket-card,
-.rsvp-card {
+.ticket-card {
   padding: 12px;
   background: var(--paper);
 }
@@ -542,21 +540,84 @@ a {
 }
 
 .note-card h3,
-.ticket-card h3,
-.rsvp-card h3 {
+.ticket-card h3 {
   margin: 0;
   font-size: 1rem;
   line-height: 1.15;
 }
 
 .note-card p,
-.ticket-card p,
-.rsvp-card p {
+.ticket-card p {
   margin: 6px 0 0;
   color: var(--muted);
   font-size: 0.86rem;
   font-weight: 600;
   line-height: 1.35;
+}
+
+.map-card {
+  position: relative;
+  margin-top: 12px;
+  padding: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(1, 69, 33, 0.12), rgba(215, 165, 54, 0.14)),
+    var(--paper);
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: hidden;
+}
+
+.map-card::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  border: 2px solid rgba(34, 24, 15, 0.5);
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 999px rgba(1, 69, 33, 0.03);
+}
+
+.map-card__label {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  width: fit-content;
+  max-width: calc(100% - 36px);
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  color: var(--paper);
+  background: var(--red);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-1.5deg);
+}
+
+.map-card__label span {
+  display: block;
+  color: var(--gold);
+  font-family: "Bowlby One SC", system-ui, sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.map-card__label strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.map-card iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  filter: saturate(0.78) sepia(0.1) contrast(0.96);
 }
 
 .ticket-card {
@@ -715,16 +776,65 @@ a {
   outline: 3px solid rgba(1, 69, 33, 0.24);
 }
 
-.rsvp-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.guest-list {
+  overflow: hidden;
+  background: var(--paper);
+  font-size: 0.82rem;
 }
 
-.rsvp-card {
-  min-height: 82px;
+.guest-row {
+  display: grid;
+  grid-template-columns: minmax(86px, 1.4fr) repeat(3, minmax(52px, 1fr));
+  align-items: center;
+  min-height: 34px;
+  border-bottom: 1.5px solid var(--ink);
 }
 
-.rsvp-card strong {
+.guest-row:last-child {
+  border-bottom: 0;
+}
+
+.guest-row span {
+  min-width: 0;
+  padding: 7px 6px;
+  border-right: 1.5px solid var(--ink);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.guest-row span:first-child {
+  text-align: left;
+}
+
+.guest-row span:last-child {
+  border-right: 0;
+}
+
+.guest-row--head {
+  min-height: 40px;
+  color: var(--paper);
+  background: var(--red);
+  font-family: "Bowlby One SC", system-ui, sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.guest-status {
+  font-size: 1rem;
+}
+
+.guest-status[data-status="✓"] {
   color: var(--red);
+}
+
+.guest-status[data-status="×"] {
+  color: #8f3f2b;
+}
+
+.guest-status[data-status="?"] {
+  color: var(--muted);
 }
 
 .bottom-nav {
@@ -733,6 +843,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
+  display: none;
   padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
   background: linear-gradient(180deg, rgba(238, 225, 200, 0), rgba(238, 225, 200, 0.94) 35%, var(--paper));
 }
@@ -818,10 +929,6 @@ a {
 
   .section-heading {
     font-size: 1rem;
-  }
-
-  .rsvp-grid {
-    grid-template-columns: 1fr;
   }
 
   .overview-link-details {

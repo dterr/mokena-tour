@@ -75,18 +75,12 @@ const overviewSoundtrack = {
 };
 
 const rsvps = [
-  ["01", "Dom", "Yes", "Host"],
-  ["02", "Guest 1", "TBD", "Derby spot"],
-  ["03", "Guest 2", "TBD", "Derby spot"],
-  ["04", "Guest 3", "TBD", "Derby spot"],
-  ["05", "Guest 4", "TBD", "Derby spot"],
-  ["06", "Guest 5", "TBD", "Derby spot"],
-  ["07", "Guest 6", "TBD", "Derby spot"],
-  ["08", "Guest 7", "TBD", "Derby spot"],
-  ["09", "Guest 8", "TBD", "Derby spot"],
-  ["10", "Guest 9", "TBD", "Derby spot"],
-  ["11", "Guest 10", "TBD", "Derby spot"],
-  ["12", "Guest 11", "TBD", "Derby spot"],
+  ["Dominic", "✓", "✓", "✓"],
+  ["Ethan", "?", "?", "?"],
+  ["Oliver", "?", "?", "?"],
+  ["Sam", "?", "?", "?"],
+  ["Beri", "?", "?", "?"],
+  
 ];
 
 const trip = [
@@ -368,16 +362,7 @@ function render(index) {
   if (day.showRsvp) {
     content.append(
       addSection("✦ 12-person RSVP", (body) => {
-        body.innerHTML = `
-          <div class="rsvp-grid">
-            ${rsvps.map(([spot, person, status, note]) => `
-              <article class="rsvp-card">
-                <h3><strong>${spot}</strong> ${person}</h3>
-                <p>${status} · ${note}</p>
-              </article>
-            `).join("")}
-          </div>
-        `;
+        body.innerHTML = renderGuestList();
       }, true)
     );
   }
@@ -422,6 +407,18 @@ function renderOverview() {
           forest preserve walks and bike rides, backyard hangs, hot tub, bonfires, Chicago friends, lightning bugs,
           and a full Americana Saturday at the Team Demolition Derby. \n 
           This website has most all the details you'd need.
+        </div>
+        <div class="map-card">
+          <div class="map-card__label">
+            <span>Home base map</span>
+            <strong>11465 194th St., Mokena, IL</strong>
+          </div>
+          <iframe
+            title="Map to 11465 194th St, Mokena, IL"
+            src="https://www.google.com/maps?q=11465%20194th%20St%2C%20Mokena%2C%20IL&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       `;
     })
@@ -470,6 +467,12 @@ function renderOverview() {
     })
   );
 
+  content.append(
+    addSection("Guest list", (body) => {
+      body.innerHTML = renderGuestList();
+    })
+  );
+
   dayCard.append(hero, content);
   if (current === 0) {
     hero.insertAdjacentHTML("beforeend", `
@@ -510,6 +513,27 @@ function renderOverview() {
   navSub.textContent = `Start · ${trip.length} days`;
   statusPill.textContent = "Start here";
   history.replaceState(null, "", "#overview");
+}
+
+function renderGuestList() {
+  return `
+    <div class="guest-list" role="table" aria-label="Guest attendance">
+      <div class="guest-row guest-row--head" role="row">
+        <span role="columnheader">Name</span>
+        <span role="columnheader">Flights</span>
+        <span role="columnheader">TWCC</span>
+        <span role="columnheader">Dirt Oval</span>
+      </div>
+      ${rsvps.map(([name, flights, twoDoor, dirtOval]) => `
+        <div class="guest-row" role="row">
+          <span role="cell">${name}</span>
+          <span class="guest-status" data-status="${flights}" role="cell">${flights}</span>
+          <span class="guest-status" data-status="${twoDoor}" role="cell">${twoDoor}</span>
+          <span class="guest-status" data-status="${dirtOval}" role="cell">${dirtOval}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 function restoreNoteFields() {
