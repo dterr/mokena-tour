@@ -28,6 +28,8 @@ const sharedTickets = [
     details: [
       "Feel free to fly in and out whenever. Earliest Wednesday latest Monday.",
       "Recommended Flight: leaving at 4:35PM from SFO, leaving at 9:40PM from ORD. $371.",
+      "Ethan is flying in with Dominic, then flying out with Oliver and Beri.",
+      "Oliver and Beri are confirmed: AA2817 from SFO on Thursday 9/24 at 5:00 PM, then SWA 4983 from MDW on Sunday 9/27 at 8:30 PM.",
       "Airport rides can be coordinated; my mom can help drive people to and from the airport.",
     ],
     key: "united-flight",
@@ -76,10 +78,10 @@ const overviewSoundtrack = {
 
 const rsvps = [
   ["Dominic", "✓", "✓", "✓"],
-  ["Ethan", "?", "?", "?"],
-  ["Oliver", "?", "?", "?"],
+  ["Ethan", "✓", "✓", "?"],
+  ["Oliver", "✓", "x", "?"],
   ["Sam", "?", "?", "?"],
-  ["Beri", "?", "?", "?"],
+  ["Beri", "✓", "x", "?"],
   
 ];
 
@@ -134,11 +136,11 @@ const trip = [
   {
     date: "2026-09-25",
     title: "Mokena Friday",
-    subtitle: "Clancy's, co-working, Mr. Benny's, bars",
+    subtitle: "Clancy's, co-working, Mr. Benny's, football option",
     place: "Mokena",
     vibe: "coffee, co-working, steakhouse, bars, bonfire",
     image: "assets/trail.JPG",
-    pitch: "Friday stays entirely in Mokena: coffee and co-working during the day, local lunch, Mr. Benny's for dinner, then Gracie's or a small bar hop before hot tub and bonfire back at the house.",
+    pitch: "Friday stays entirely in Mokena: coffee and co-working during the day, local lunch, Mr. Benny's for dinner, then either Gracie's / a small bar hop or a Lincoln-Way East football detour before hot tub and bonfire back at the house.",
     alert: null,
     bring: ["Work setup", "Laptop charger", "Dinner fit", "Bonfire layer", "Swimsuit"],
     plan: [
@@ -147,11 +149,13 @@ const trip = [
       ["Lunch", "Joey's Red Hots or Portillo's."],
       ["Afternoon", "Bike ride through Old Plank Trail."],
       ["Dinner", "Mr. Benny's Steak & Lobster House."],
-      ["After dinner", "Gracie's / Old Plank Trail Tavern, or a small Mokena bar hop."],
+      ["Option A", "Gracie's / Old Plank Trail Tavern, or a small Mokena bar hop."],
+      ["Option B", "Lincoln-Way East football if the schedule lines up, then bars after."],
       ["Late", "Bonfire and hot tub back at the house."],
     ],
     notes: [
       ["Main Mokena day", "This is the day for showing people Mokena as a normal lived-in place."],
+      ["Football option", "Lincoln-Way East is currently listed as IL #3 on MaxPreps and #2 in Illinois 8A. Andrew at Lincoln-Way East on Sept. 25 is a SouthWest Suburban conference game and would give Beri the most direct possible look into American high school football culture."],
       ["Fallback", "If Mr. Benny's timing does not work, Aurelio's or Beggars can become the casual food fallback."],
     ],
   },
@@ -531,7 +535,11 @@ function renderLocals() {
           </div>
           <div class="step">
             <strong>Friday night</strong>
-            <p>Mokena bars, probably Gracie's / Old Plank Trail Tavern, then bonfire and hot tub.</p>
+            <p>Mokena bars, probably Gracie's / Old Plank Trail Tavern, with a possible Lincoln-Way East football detour first.</p>
+          </div>
+          <div class="step">
+            <strong>Football option</strong>
+            <p>LWE is currently listed as IL #3 on MaxPreps and #2 in Illinois 8A. Andrew at LWE on Sept. 25 is a conference game and the perfect Beri introduction to American high school football culture.</p>
           </div>
           <div class="step">
             <strong>Saturday</strong>
