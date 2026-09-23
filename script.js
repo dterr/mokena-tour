@@ -28,9 +28,9 @@ const sharedTickets = [
     details: [
       "Feel free to fly in and out whenever. Earliest Wednesday latest Monday.",
       "Recommended Flight: leaving at 4:35PM from SFO, leaving at 9:40PM from ORD. $371.",
-      "Ethan is flying in with Dominic, then flying out with Oliver and Beri.",
       "Ethan and Sam fly in around 1:00 AM on Thursday.",
-      "Oliver and Beri are confirmed: AA2817 from SFO on Thursday 9/24 at 5:00 PM, landing around 11:00 PM, then SWA 4983 from MDW on Sunday 9/27 at 8:30 PM.",
+      "Oliver and Beri are confirmed: AA2817 from SFO on Thursday 9/24 at 5:00 PM, landing around 11:00 PM.",
+      "Ethan, Oliver, and Beri fly out from MDW on SWA 4983 on Sunday 9/27 at 8:30 PM.",
       "Airport rides can be coordinated; my mom can help drive people to and from the airport.",
     ],
     key: "united-flight",
@@ -88,75 +88,54 @@ const rsvps = [
 
 const trip = [
   {
-    date: "2026-09-23",
-    title: "Settling In",
-    subtitle: "Portillo's, garage beers, home base",
-    place: "SFO → Chicago → Mokena",
-    vibe: "touch down in the Paris of the Midwest",
-    image: "assets/mokena_watertower.JPG",
-    imageClass: "hero-image--watertower",
-    pitch: "Fly in, settle into the hometown base, and let the weekend get local immediately.",
-    alert: "My mom can help with airport rides, so arrivals do not need to be perfectly synchronized.",
-    bring: ["Flight details", "Comfy travel clothes", "Appetite", "Garage beer stamina"],
-    plan: [
-      ["Flight", "UA2847 from SFO to Chicago."],
-      ["Arrival", "Settle into Mokena and meet the home base."],
-      ["Food", "Portillo's, then garage beers."],
-      ["Night", "Hot tub or low-key backyard reset if people are tired."],
-    ],
-    notes: [
-      ["Home base", "This is the hub for slow mornings, bonfires, and backyard hangs."],
-      ["Airport", "Rides can be coordinated around arrival windows."],
-    ],
-  },
-  {
     date: "2026-09-24",
     title: "Workday + Two Door Cinema Club",
     subtitle: "EggCetera, Metra, Uber office, TDCC",
     place: "Chicago",
     vibe: "breakfast, train, office, riverfront, concert",
     image: "assets/chicago_river.JPG",
-    pitch: "Thursday is the full Chicago day: leave Mokena around 10:00 AM, work downtown, meet Jack for a drink after work, watch Two Door Cinema Club, then head back to Mokena afterwards.",
+    pitch: "Thursday is now Day 1: leave Mokena around 10:00 AM, work downtown, meet Jack for a drink after work, watch Two Door Cinema Club, then head back to Mokena afterwards.",
     alert: "Ethan and Sam fly in around 1:00 AM Thursday. If they need a recovery day, they can stay back and work from Mokena instead of coming downtown.",
     bring: ["Laptop", "Concert fit", "Transit plan", "Portable charger", "Light jacket"],
     plan: [
       ["1:00 AM", "Ethan and Sam fly in late and get to Mokena."],
       ["10:00 AM", "Leave Mokena for downtown Chicago."],
-      ["Workday", "Work from the Uber office / Old Post Office."],
+      ["Workday", "Work from the Old Post Office (Uber)."],
       ["Optional", "Sam and Ethan can stay in Mokena and work from the house if the 1:00 AM arrival catches up with them."],
-      ["6:00 PM", "Wrap work for the day."],
-      ["After work", "Meet Jack for a drink in Chicago."],
-      ["Night", "Two Door Cinema Club at The Salt Shed."],
+      ["7:00 PM", "Two Door Cinema Club at The Salt Shed."],
       ["After concert", "Head back to Mokena afterwards."],
+      ["11:00PM", "Oliver and Beri land around 11:00 PM and will need to Uber down to the house in Mokena."],
     ],
     notes: [
       ["Chicago day", "This is the clean day for the office, riverfront, Chicago friends, and the concert."],
       ["Late flight", "Ethan and Sam will be operating off a 1:00 AM arrival, so the Mokena work-from-home option should stay open."],
+      ["Airport", "Only Oliver and Beri are flying in around 11:00 PM Thursday. They should plan on a late Uber from the airport to Mokena."],
     ],
   },
   {
     date: "2026-09-25",
     title: "Mokena Friday",
-    subtitle: "Clancy's, co-working, Mr. Benny's, football option",
+    subtitle: "Work local or work downtown",
     place: "Mokena",
-    vibe: "coffee, co-working, steakhouse, bars, bonfire",
+    vibe: "workday options, football, bar crawl",
     image: "assets/trail.JPG",
-    pitch: "Friday stays entirely in Mokena: coffee and co-working during the day, local lunch, Mr. Benny's for dinner, then either Gracie's / a small bar hop or a Lincoln-Way East football detour before hot tub and bonfire back at the house.",
-    alert: null,
+    pitch: "Friday depends on work schedules. Oliver, Beri, and Ethan need to work, so we can keep it local from a coffee shop / the house, or go downtown to the Chicago Uber office if people have meetings.",
+    alert: "Decision point: if meetings are light, work local and keep the full Mokena Friday. If meetings are heavy, work downtown and come back later.",
     bring: ["Work setup", "Laptop charger", "Dinner fit", "Bonfire layer", "Swimsuit"],
     plan: [
       ["Morning", "Coffee and breakfast at Clancy's."],
-      ["Workday", "Co-work from the house, Clancy's, or another local work spot."],
-      ["Lunch", "Joey's Red Hots or Portillo's."],
-      ["Afternoon", "Bike ride through Old Plank Trail."],
-      ["Dinner", "Mr. Benny's Steak & Lobster House."],
-      ["Option A", "Gracie's / Old Plank Trail Tavern, or a small Mokena bar hop."],
-      ["Option B", "Lincoln-Way East football if the schedule lines up, then bars after."],
-      ["Late", "Bonfire and hot tub back at the house."],
+      ["Work note", "Oliver, Beri, and Ethan need to work."],
+      ["Option 1 · Work local", "Work from the house, Clancy's, or another local coffee shop."],
+      ["6:00 PM", "Dinner at Mr. Benny's Steak & Lobster House."],
+      ["After dinner", "HS football LWE vs Andrew at 7pm."],
+      ["Late", "Mokena bar crawl, likely Gracie's / Old Plank Trail Tavern, then hot tub or bonfire."],
+      ["Option 2 · Work downtown", "Go to the Chicago Uber office if people have meetings."],
+      ["Downtown evening", "Get dinner downtown, then come home later that night for a potential Mokena bar stop."],
     ],
     notes: [
       ["Main Mokena day", "This is the day for showing people Mokena as a normal lived-in place."],
       ["Football option", "Lincoln-Way East is currently listed as IL #3 on MaxPreps and #2 in Illinois 8A. Andrew at Lincoln-Way East on Sept. 25 is a SouthWest Suburban conference game and would give Beri the most direct possible look into American high school football culture."],
+      ["Work split", "The local version is the better Mokena pitch, but the downtown version is cleaner if people have meeting-heavy calendars."],
       ["Fallback", "If Mr. Benny's timing does not work, Aurelio's or Beggars can become the casual food fallback."],
     ],
   },
@@ -291,7 +270,7 @@ function render(index) {
   content.append(
     addSection("✦ Bring", (body) => {
       body.innerHTML = `<div class="tag-list">${day.bring.map((item) => `<span>${item}</span>`).join("")}</div>`;
-    }, dayIndex === 4 || dayIndex === 5)
+    }, dayIndex >= 2)
   );
 
   content.append(
@@ -321,7 +300,7 @@ function render(index) {
           `).join("")}
         </div>
       `;
-    }, dayIndex === 5)
+    }, dayIndex === 3)
   );
 
   if (day.showTickets) {
@@ -360,7 +339,7 @@ function render(index) {
   nextDay.disabled = current === pageCount - 1;
   navTitle.textContent = day.title;
   navSub.textContent = `Day ${dayIndex + 1} of ${trip.length}`;
-  statusPill.textContent = dayIndex === 4 ? "12 spots" : "RSVP soon";
+  statusPill.textContent = dayIndex === 2 ? "12 spots" : "RSVP soon";
   history.replaceState(null, "", `#day-${dayIndex + 1}`);
   restoreNoteFields();
 }
